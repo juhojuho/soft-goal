@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style>
+@media all and (min-width: 412px) {
+  html {
+    width: 412px;
+    margin: auto;
+  }
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -30,3 +33,13 @@
   color: #42b983;
 }
 </style>
+
+<script>
+export default {
+  beforeCreate() {
+    this.$store.dispatch("fetchUserInfo", this.$route.params.uid);
+    this.$store.dispatch("fetchStepCount", this.$route.params.uid);
+    this.$store.dispatch("fetchGoalInfo", this.$route.params.uid);
+  }
+};
+</script>
