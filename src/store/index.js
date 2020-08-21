@@ -22,9 +22,12 @@ export default new Vuex.Store({
       state.userInfo = val
     },
     setStepCount(state, val) {
+      const temp = state.stepCount
       if (val.date) {
-        state.stepCount[val.date] = val.count
+        temp[val.date] = val.count
       }
+      state.stepCount = ''
+      state.stepCount = temp;
     },
     setGoalInfo(state, val) {
       state.goalInfo = val
@@ -84,7 +87,7 @@ export default new Vuex.Store({
       if (pickedWeek <= state.goalInfo.goal.length) {
         commit('setPickedDateInfo', {});
         commit('setPickedDate', 0);
-        const goal = state.goalInfo.goal[pickedWeek - 1]
+        const goal = state.goalInfo.goal[pickedWeek - 1] / 1;
         const startingDate = state.goalInfo["starting-date"][pickedWeek - 1];
         const thisWeekDate = new Date(2000 + parseInt(startingDate / 10000), (parseInt(startingDate / 100) % 100) - 1, startingDate % 100)
         let last = 0;
@@ -107,8 +110,10 @@ export default new Vuex.Store({
             date: nextDate.getDate(),
             day: nextDate.getDay()
           }
+          console.log(`goal ${goal}`)
           if (state.stepCount[iDate]) {
             const step = state.stepCount[iDate];
+            console.log(`step ${step}`)
             if (step >= goal) {
               evaluation[iDate] = 'true';
             } else if (step >= subGoal) {
@@ -133,7 +138,7 @@ export default new Vuex.Store({
       }
     },
     async pickDate({ commit, state }, pickedDate) {
-      const goal = state.goalInfo.goal[state.pickedWeek - 1]
+      const goal = state.goalInfo.goal[state.pickedWeek - 1] / 1
       let margin = 0;
       if (state.userInfo.type == '1') {
         margin = state.margins.constant.value;
@@ -154,6 +159,16 @@ export default new Vuex.Store({
       console.log(goal, margin, subGoal, step, evaluation)
       commit('setPickedDateInfo', { goal, margin, subGoal, step, evaluation });
       commit('setPickedDate', pickedDate);
+    },
+    async uploadStepCount({ commit, state, dispatch }, {uid, count, yesterday}) {
+      const iDate = (yesterday.year % 100) * 10000 + yesterday.month * 100 + yesterday.day;
+      commit('setStepCount', {count, date: iDate})
+      dispatch('evaluateGoals', { pickedWeek: state.goalInfo.goal.length, isFirstTime: 1 });
+      fb.stepsCollection.add({
+        count,
+        uid,
+        date: iDate,
+      })
     }
   },
   modules: {

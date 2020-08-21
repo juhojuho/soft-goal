@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import User from '../views/User.vue'
+import Report from '../views/Report.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ Vue.use(VueRouter)
     path: '/user/:uid',
     name: 'User',
     component: User
+  },
+  {
+    path: '/report/:uid',
+    name: 'Report',
+    component: Report
   }
 ]
 

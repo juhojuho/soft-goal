@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="name">안녕하세요, {{ $store.state.userInfo.name }}님</div>
     <div class="week-container">
       <img @click="moveToPreviousWeek" class="arrow arrow-rotate" src="../assets/icon-arrow.png" />
       {{weeks[pickedWeek-1]}} WEEK

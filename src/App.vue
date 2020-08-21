@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div class="name">안녕하세요, {{ $store.state.userInfo.name }}님</div>
     <router-view />
   </div>
 </template>
@@ -31,6 +32,13 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.name {
+  margin-top: 20px;
+  margin-left: 10px;
+  font-size: 2em;
+  text-align: left;
 }
 </style>
 
