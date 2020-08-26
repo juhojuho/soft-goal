@@ -6,11 +6,16 @@
 </template>
 
 <style>
-@media all and (min-width: 412px) {
+@media all and (min-width: 400px) {
   html {
-    width: 412px;
+    width: 400px;
     margin: auto;
+    padding: 0;
   }
+}
+
+body {
+  margin: 0;
 }
 
 #app {

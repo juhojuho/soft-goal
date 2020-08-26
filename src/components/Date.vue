@@ -81,7 +81,8 @@ export default {
 .date-container {
   display: inline-block;
   width: 40px;
-  margin-right: 10px;
+  margin-right: 2.5px;
+  margin-left: 2.5px;
   text-align: center;
 }
 

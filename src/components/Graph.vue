@@ -100,16 +100,17 @@ export default {
 </script>
 <style scoped>
 .graph-wrapper {
-  width: 350px;
-  height: 350px;
+  width: 330px;
+  height: 330px;
   position: relative;
   text-align: cneter;
+  margin: auto;
 }
 
 .graph-meter {
   position: absolute;
   left: 50%;
-  margin-left: -150px;
+  margin-left: -165px;
   display: block;
   width: 100%;
   height: 100%;
@@ -119,9 +120,9 @@ export default {
 .graph-figure {
   position: absolute;
   width: 200px;
-  bottom: 170px;
+  bottom: 160px;
   left: 50%;
-  margin-left: -75px;
+  margin-left: -100px;
 }
 
 .graph-step {
