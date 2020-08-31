@@ -89,10 +89,11 @@ export default {
     };
   },
   created() {
-    const date = new Date();
+    const now = new Date();
+    const date = new Date(now.getTime() - 24 * 60 * 60 * 1000);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
-    const day = date.getDate() - 1;
+    const day = date.getDate();
     this.today = { year, month, day };
     this.iDate =
       (this.today.year % 100) * 10000 + this.today.month * 100 + this.today.day;
